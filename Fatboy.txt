@@ -1,0 +1,9 @@
+"Fatboy"
+{
+	"base"		"base"
+	"title"		"Fatboy"
+	"maps"		"^fb_"
+	"menusystem"	"1"
+	"workshopid"	""
+
+}
