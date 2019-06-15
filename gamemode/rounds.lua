@@ -1,4 +1,5 @@
 
+
 function RoundStart()
 	local Alive = 0 
 	for k, v in pairs( player.GetAll() ) do
@@ -32,20 +33,28 @@ function RoundStart()
 				end
 			end
 
-
+	for k, v in pairs( player.GetAll() ) do
 			if (FBAlive == 0 ) then
+
 				EndRound("Survivor")
+				v:PrintMessage( HUD_PRINTTALK , "Survivors win!")
 			elseif (SAlive == 0 ) then
 				EndRound("Fatboy")
+				v:PrintMessage( HUD_PRINTTALK , "Fatboy wins!")
 			end
-
+end
 		end)
 	end
 
-	function EndRound( winners )
 
+
+
+
+
+	function EndRound( winners )
+		local ply = FindMetaTable("Player")
 		print ( winners .. " won the round!")
-	timer.Create( "cleanup", 3, 1, function ()
+		timer.Create( "cleanup", 3, 1, function ()
 		game.CleanUpMap( false, {} )
 		for _, v in pairs( player.GetAll() ) do
 		if ( 	v:Alive() ) then
