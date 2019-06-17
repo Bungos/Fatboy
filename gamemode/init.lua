@@ -63,6 +63,8 @@ function GM:PlayerInitialSpawn ( ply )
 
 if (roundActive == true ) then
 	print (tostring(ply) .. "killed silently")
+	ply:PrintMessage( HUD_PRINTTALK , "Waiting for new round to start.")
+	ply:Spectate(5)
 	ply:KillSilent()
 	return
 else
@@ -95,16 +97,20 @@ else
 
 end
 
---
+---1359.057983 -659.082275 -238.717438
 if 
 
  	ply:Team() == 0 then
+ 		if game.GetMap() == "cs_office" then
+		ply:SetPos( Vector(-1193.321411, -1093.556885, -263.665436))
+		elseif game.GetMap() == "custommap3" then
+			ply:SetPos( Vector(-810.865662, -509.642395, 54.203293))
+end
  	ply:PrintMessage( HUD_PRINTTALK , "New Round Started")
  	RoundSFX()
- 	ply:SetPos( Vector(-1176.484863, 1218.249756, -346.352631))
  	ply:SetMaxHealth(1000)
  	ply:SetJumpPower (200)
- 	ply:SetHealth(600 + (375* (player.GetCount())))
+ 	ply:SetHealth(600 + (330  * (player.GetCount())))
 	ply:SetGravity( 0.7 )
 	ply:SetWalkSpeed ( 230 )
 	ply:SetRunSpeed ( 230 )
@@ -116,7 +122,11 @@ if
 	ply:SetupHands()
 elseif 
 	ply:Team() == 1 then
+		if game.GetMap() == "cs_office" then
 		ply:SetPos( Vector(-1187.241089, 478.111176, -265.145447))
+				elseif game.GetMap() == "custommap3" then
+			ply:SetPos( Vector(528.293396, -3468.298584, 54.031250))
+	end
 		ply:PrintMessage( HUD_PRINTTALK , "New Round Started")
 		RoundSFX()
 	ply:SetJumpPower (200)
@@ -133,8 +143,8 @@ elseif
 	ply:SetupHands()
 elseif 
 	ply:Team() == 2 then
-		ply:SetPos( Vector(-1176.484863, 1218.249756, -346.352631))
-		RoundSFX()
+		ply:PrintMessage( HUD_PRINTTALK , "You died, kill the remaining survivors!")
+	RoundSFX()
 	ply:SetHealth(1)
 	ply:Give("weapon_crowbar")
 	ply:SetGravity( 0.6 )
